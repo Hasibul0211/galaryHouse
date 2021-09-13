@@ -12,10 +12,60 @@ header{
 }
 .text-clr{
     color: black;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: cursive;
 }
 .cardIcon{
-    color: black;
+    color: blueviolet;
     font-size: 35px;
     margin-top: 5px;
+
 }
+/* search section design */
+.search-container{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 5px;
+}
+.search{
+    width: 100%;
+    border: 1px solid;
+    height: 40px;
+    margin: 0 auto;
+    float: left;
+    border: 2px solid blueviolet;
+
+}
+.search input{
+    width: 80%;
+}
+.search button{
+    width: 20%;
+    background-color: blueviolet;
+    height: 36px;
+    padding: 5px;
+    float: right;
+    color: whitesmoke;
+    font-weight: 800;
+    font-family: cursive;
+}
+/* error alert section */
+#error-alert{
+    display: none;
+}
+/* spinner section */
+#spinner{
+    display: none;
+    padding-top: 20px;
+}
+/* single card design  */
+.cards{
+    height: 300px;
+}
+
+/* media queire */
+@media only screen and (max-width: 600px) {
+    .search-container{
+        width: 80%;
+    }
+  }

@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/a9537b7554.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- header section here -->
     <header class="text-white py-3">
         <div class="d-flex justify-content-between container">
             <div>
@@ -27,11 +28,39 @@
                         <span class="visually-hidden">unread messages</span>
                       </span>
                 </i>
-
             </div>
-        </div>
-        
+        </div>  
     </header>
+    <main>
+        <!-- search section  -->
+        <section class="search-container">
+            <div class="search">
+                <input id="input-field" type="text" placeholder="Search your items...">
+                <button onclick="getSearch()">Search</button>
+            </div>
+            <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert" id="error-alert">
+                <strong>Opps!!! you entered empty field</strong>
+              </div>
+        </section>
+        <!-- search result shown -->
+        <section style="clear: both;">
+            <div id="spinner">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+            </div>
+            
+
+            <!-- showing card here -->
+
+            <div id="card-container" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 mx-2 g-4">
+                
+               
+              </div>
+        </section>
+    </main>
 
 
 
