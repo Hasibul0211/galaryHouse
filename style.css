@@ -60,9 +60,46 @@ header{
 }
 /* single card design  */
 .cards{
-    height: 300px;
+    height: 480px;
 }
 
+/* image section */
+.img-container{
+    height: 230px;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 0px;
+}
+.img-container img{
+    height: 100%;
+}
+.card-title{
+font-size: 18px;
+font-weight: 900;
+}
+.price-tag{
+    color: red;
+    text-align: center;
+    font-weight: 900;
+    font-size: 22px;
+    margin: 1px;
+}
+.catagorie{
+    margin: 0;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.Ratings{
+    text-align: center;
+    font-weight: 700;
+}
+.btn-get{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 /* media queire */
 @media only screen and (max-width: 600px) {
     .search-container{

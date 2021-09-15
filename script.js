@@ -39,18 +39,25 @@ const getProduct=(products)=>{
     else{
         spinner('none');
         products.forEach(product => {
-            
+            console.log(product)
             const div=document.createElement('div');
             div.classList.add('col');
             div.innerHTML=` 
                  <div class="card cards">
-                      <div>
-                        <img src="..." class="card-img-top" alt="...">
+                      <div class="img-container">
+                        <img src="${product.image}" class="card-img-top" alt="...">
                       </div>
                      <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <h5 class="card-title">${product.title.slice(0,20)}</h5>
+                      <p class="catagorie">Catagories: ${product.category}</p>
+                      <p class="price-tag">Price:$<span>${product.price}</span></p>
+                      <p class="Ratings">Ratings: ${product.rating.rate}(${product.rating.count})</p>
+                      
                     </div>
+                    <div class="btn-get">
+                    <button class="btn btn-warning fw-bold">Add Cart</button>
+                      <button class="btn btn-warning fw-bold">Show Details</button>
+                      </div>
                 </div>
             `;
             container.appendChild(div);
