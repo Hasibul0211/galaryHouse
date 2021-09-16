@@ -27,17 +27,19 @@ const getSearch = () => {
         getError('none');//error function
         spinner('block');
         div.textContent = '';
-        const url = `https://fakestoreapi.com/products`;
+        const url = `https://fakestoreapi.com/${inputText}`;
         fetch(url)
             .then(res => res.json())
             .then(data => getProduct(data))
     }
+
 }
 
 const getProduct = (products) => {
-    if (products.length === undefined) {
-        spinner('none');
+    if (products.length === 0) {
+        getError('block')
     }
+
     else {
         spinner('none');
         products.forEach(product => {
@@ -56,16 +58,18 @@ const getProduct = (products) => {
                       
                     </div>
                     <div class="btn-get">
-                    <button class="btn btn-warning fw-bold" onclick="showCount()">Add Cart</button>
+                    <button class="btn btn-warning fw-bold" onclick="showCount(${product.price})">Add Cart</button>
                       <button class="btn btn-warning fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModalTwo" onclick="showDetails('${product.id}')">Show Details</button>
                       </div>
                 </div>
             `;
             container.appendChild(div);
         });
+
     }
 
 }
+
 
 // details information here
 const showDetails = (id) => {
@@ -105,14 +109,97 @@ const showSingleDetails = (detail) => {
 let count = 0;
 const showNumberTwo = document.getElementById('count-number');
 const showNumber = document.getElementById('show-item-number');
-const showCount = () => {
+const showCount = (price) => {
     count++;
     showNumber.innerText = count;
     showNumberTwo.innerText = count;
+    updatePrices(price);
+    updateDeliveryCharge();
+    updateTaxes();
+    updateTotal();
 }
 
 // cart icon here 
-const showPriceContent = () => {
+/* const showPriceContent = () => {
     console.log('get cart icon');
 
+} */
+// update price here 
+const updatePrices = (price) => {
+    const getOldPrice = document.getElementById("count-price").innerText;
+    const updateOldPrice = parseFloat(getOldPrice);
+    const newPrice = parseFloat(price);
+    const totalPrice = updateOldPrice + newPrice;
+    document.getElementById('count-price').innerText = totalPrice.toFixed(2);
 }
+
+// update delivery charge here 
+const updateDeliveryCharge = () => {
+    const getPrice = document.getElementById('count-price').innerText;
+    const priceNumber = parseFloat(getPrice);
+    const getCharge = document.getElementById('count-charge');
+
+    if (priceNumber < 200) {
+        getCharge.innerText = 20;
+        updateTotal();
+    }
+    if (priceNumber > 200) {
+        getCharge.innerText = 30;
+        updateTotal();
+    }
+    if (priceNumber > 400) {
+        getCharge.innerText = 50;
+        updateTotal();
+    }
+    if (priceNumber > 500) {
+        getCharge.innerText = 60;
+        updateTotal();
+    }
+}
+
+// update taxes here 
+
+const updateTaxes = () => {
+    const getTaxePrice = document.getElementById('count-price').innerText;
+    const priceTaxNumber = parseFloat(getTaxePrice);
+    const getTaxes = document.getElementById('count-tax');
+    if (priceTaxNumber < 200) {
+        const newTaxPrice = (priceTaxNumber * 0.1);
+        getTaxes.innerText = newTaxPrice.toFixed(2);
+        updateTotal();
+    }
+    if (priceTaxNumber > 200) {
+        const newTaxPrice = (priceTaxNumber * 0.2);
+        getTaxes.innerText = newTaxPrice.toFixed(2);
+        updateTotal();
+    }
+    if (priceTaxNumber > 400) {
+        const newTaxPrice = (priceTaxNumber * 0.3);
+        getTaxes.innerText = newTaxPrice.toFixed(2);
+        updateTotal();
+    }
+    if (priceTaxNumber > 500) {
+        const newTaxPrice = (priceTaxNumber * 0.4);
+        getTaxes.innerText = newTaxPrice.toFixed(2);
+        updateTotal();
+    }
+}
+
+// update total price here 
+
+const updateTotal = () => {
+    const getTotal = document.getElementById('count-total');
+
+    const getOldPrice = document.getElementById("count-price").innerText;
+    const updateOldPrice = parseFloat(getOldPrice);
+
+    const getPrice = document.getElementById('count-charge').innerText;
+    const priceNumber = parseFloat(getPrice);
+
+    const getTaxePrice = document.getElementById('count-tax').innerText;
+    const priceTaxNumber = parseFloat(getTaxePrice);
+
+    const totatAmount = updateOldPrice + priceNumber + priceTaxNumber;
+    getTotal.innerText = totatAmount.toFixed(2);
+}
+
